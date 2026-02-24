@@ -1,5 +1,4 @@
 // POST localhost:3000/api/demo/blocking
-
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 import { NextResponse } from "next/server";
