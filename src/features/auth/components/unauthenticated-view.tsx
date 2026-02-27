@@ -20,15 +20,15 @@ export const UnauthenticatedView = () => {
             <ShieldIcon className="h-6 w-6" />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>Unauthenticated Access</ItemTitle>
+            <ItemTitle>Acesso restrito</ItemTitle>
             <ItemDescription>
-              This view is only accessible to unauthenticated users.
+              Esta página só é acessível a usuários autenticados.
             </ItemDescription>
           </ItemContent>
           <ItemActions>
             <SignInButton>
               <Button variant="outline" size="sm">
-                Sign In
+                Login
               </Button>
             </SignInButton>
           </ItemActions>
