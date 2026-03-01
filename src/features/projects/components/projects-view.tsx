@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 
-import { Poppins } from "next/font/google";
+import { font } from "@/fonts";
+
 import { SparkleIcon } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import {
@@ -20,11 +21,6 @@ import { Kbd } from "@/components/ui/kbd";
 import { ProjectsList } from "./projects-list";
 import { useCreateProject } from "../hooks/use-projects";
 import { ProjectsCommandDialog } from "./projects-command-dialog";
-
-const font = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const ProjectsView = () => {
   const createProject = useCreateProject();
