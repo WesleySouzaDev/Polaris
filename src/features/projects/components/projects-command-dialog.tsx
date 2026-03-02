@@ -50,7 +50,7 @@ export const ProjectsCommandDialog = ({
       open={open}
       onOpenChange={onOpenChange}
       title="Pesquisar Projetos"
-      description="Pesquise e navegue pelo seus projetos"
+      description="Pesquise e navegue pelos seus projetos"
     >
       <CommandInput placeholder="Pesquisar projeto..." />
       <CommandList>
