@@ -54,11 +54,11 @@ const ContinueCard = ({ data }: { data: Doc<"projects"> }) => {
       >
         <Link className="group" href={`/projects/${data._id}`}>
           <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 truncate">
               {getProjectIcon(data)}
               <span className="font-medium truncate">{data.name}</span>
             </div>
-            <ArrowRightIcon className="size-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRightIcon className="size-4 ml-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
           </div>
           <span className="text-sm text-muted-foreground w-full text-left">
             {formatTimestamp(data.updatedAt)}
