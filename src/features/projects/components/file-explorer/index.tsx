@@ -22,7 +22,7 @@ import { LoadingRow } from "./loading-row";
 import { Tree } from "./tree";
 
 export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   const [collapsedKey, setCollapsedKey] = React.useState(0);
   const [creating, setCreating] = React.useState<"file" | "folder" | null>(
     null,
@@ -65,7 +65,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
         >
           <ChevronRightIcon
             className={cn(
-              "size-4 shrink-0 text-muted-foreground",
+              "size-4 shrink-0 text-muted-foreground ml-0.5",
               isOpen && "rotate-90",
             )}
           />
