@@ -3,6 +3,7 @@ import { inter, plexMono } from "@/fonts";
 
 import "./globals.css";
 
+import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
@@ -16,9 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${inter.variable} ${plexMono.variable} antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
