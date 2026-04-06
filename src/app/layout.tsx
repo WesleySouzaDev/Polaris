@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { inter, plexMono } from "@/fonts";
 
 import "./globals.css";
+import "allotment/dist/style.css";
 
 import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/components/providers";
