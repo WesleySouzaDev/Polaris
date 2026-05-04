@@ -2,13 +2,14 @@ import { generateText } from "ai";
 import { inngest } from "./client";
 import { google } from "@ai-sdk/google";
 import { firecrawl } from "@/lib/firecrawl";
+import type { inngestOutputEvents } from "@/features/conversations/types";
 
 const URL_REGEX = /https?:\/\/[^\s]+/g;
 
 export const demoGenerate = inngest.createFunction(
   { id: "demo-generate" },
   { event: "demo/generate" },
-  async ({ event, step }) => {
+  async ({ event, step }: inngestOutputEvents) => {
     const { prompt } = event.data as { prompt: string };
 
     const urls = (await step.run("extract-urls", async () => {
