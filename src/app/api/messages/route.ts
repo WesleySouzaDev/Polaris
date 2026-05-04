@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   const { userId } = await auth();
 
   if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
   const internalKey = process.env.POLARIS_CONVEX_INTERNAL_KEY;
@@ -49,7 +49,33 @@ export async function POST(request: Request) {
 
   const projectId = conversation.projectId;
 
-  //TODO: Verificação para o processamento das messagens
+  const processingMessages = await convex.query(
+    api.system.getProcessingMessages,
+    {
+      internalKey,
+      projectId,
+    },
+  );
+
+  if (processingMessages.length > 0) {
+    // Cancelar todos os processos de mensagens
+    await Promise.all(
+      processingMessages.map(async (msg) => {
+        await inngest.send({
+          name: "message/cancel",
+          data: {
+            messageId: msg._id,
+          },
+        });
+
+        await convex.mutation(api.system.updateMessageStatus, {
+          internalKey,
+          messageId: msg._id,
+          status: "cancelled",
+        });
+      }),
+    );
+  }
 
   //Criar user message
   await convex.mutation(api.system.createMessage, {
@@ -70,11 +96,14 @@ export async function POST(request: Request) {
     status: "processing",
   });
 
-  // TODO: Implementar Inngest para o processamento da menssagem
+  // Gatilho Inggest para processar a mensagem
   const event = await inngest.send({
     name: "message/sent",
     data: {
       messageId: assistantMessageId,
+      conversationId,
+      projectId,
+      message,
     },
   });
 
